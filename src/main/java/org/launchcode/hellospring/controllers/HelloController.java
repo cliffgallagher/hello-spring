@@ -50,7 +50,7 @@ public class HelloController {
     public String displayGreetMeForm() {
         return "<html>" +
                 "<body>" +
-                "<form>" +
+                "<form action='hellolanguage' method='post'>" +
                 "<input type='text' name='userName'>" +
                 "<select name='language'>" +
                 "<option value='english'>English</option>" +
@@ -61,6 +61,17 @@ public class HelloController {
                 "</form>" +
                 "</body>" +
                 "</html>";
+    }
+
+    @PostMapping("hellolanguage")
+    public static String createMessage(@RequestParam String userName, @RequestParam String language) {
+        if (language.equals("english")) {
+            return "Hello, " + userName + "!";
+        } else if (language.equals("spanish")) {
+            return "Hola, " + userName + "!";
+        } else {
+            return "Bonjour, " + userName + "!";
+        }
     }
 
 
